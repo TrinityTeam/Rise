@@ -1,6 +1,6 @@
 Province = {}
 
-function Province:new(name, pop, fractions, unrest, force, infrastructure)
+function Province:new(name, pop, fractions, unrest, force, infrastructure, controller)
     local obj= {}
     obj.name = name
     obj.pop = pop
@@ -8,8 +8,8 @@ function Province:new(name, pop, fractions, unrest, force, infrastructure)
     obj.unrest = unrest
     obj.force = force
     obj.infrastructure = infrastructure
+    obj.controller = controller
 
-    --чистая магия!
     setmetatable(obj, self)
     self.__index = self;
     return obj
