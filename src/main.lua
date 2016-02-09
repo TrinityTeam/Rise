@@ -21,14 +21,34 @@ prop:setLoc(0, 0)
 
 layer:insertProp(prop)
 
+headerFont = MOAIFont.new()
+headerFont:loadFromTTF('../data/supernatural_knight.ttf')
+
+headerStyle = MOAITextStyle.new()
+headerStyle:setColor(1, 0, 0)
+headerStyle:setFont(headerFont)
+
+header = MOAITextLabel.new()
+header:setStyle(headerStyle)
+header:setTextSize(64)
+header:setLoc(0, 150)
+header:setString("RISE")
+header:setYFlip(true)
+header:setAlignment(MOAITextBox.CENTER_JUSTIFY, MOAITextBox.BASELINE_JUSTIFY)
+layer:insertProp(header)
+
 font = MOAIFont.new()
 font:loadFromTTF('../data/allods_west.ttf')
 
+style = MOAITextStyle.new()
+style:setColor(0.4, 0, 0.9)
+style:setFont(font)
+
 text = MOAITextLabel.new()
-text:setLoc(0, -100)
+text:setLoc(0, -280)
 text:setString("Coming soon...")
-text:setFont(font)
-text:setTextSize(32)
+text:setStyle(style)
+text:setTextSize(24)
 text:setYFlip(true)
 text:setAlignment(MOAITextBox.CENTER_JUSTIFY, MOAITextBox.BASELINE_JUSTIFY)
 layer:insertProp(text)
@@ -36,3 +56,10 @@ layer:insertProp(text)
 renderTable = { layer }
 MOAIRenderMgr.setRenderTable(renderTable)
 
+MOAIUntzSystem.initialize()
+
+sound = MOAIUntzSound.new()
+sound:load('../data/Rise.wav')
+sound:setVolume(1)
+sound:setLooping(true)
+sound:play()
