@@ -1,25 +1,8 @@
-MOAISim.openWindow('Test', 800, 600)
+GUI = require("gui.gui")
 
-viewport = MOAIViewport.new()
-viewport:setSize(800, 600)
-viewport:setScale(800, 600)
+GUI.openWindow("Rise", 800, 600)
 
-layer = MOAILayer2D.new()
-layer:setViewport(viewport)
-
-texture = MOAITexture.new()
-texture:load('../data/geass.jpg')
-w, h = texture:getSize()
-k = w / h
-image = MOAIGfxQuad2D.new()
-image:setTexture(texture)
-image:setRect(-120*k, -120, 120*k, 120)
-
-prop = MOAIProp2D.new()
-prop:setDeck(image)
-prop:setLoc(0, 0)
-
-layer:insertProp(prop)
+GUI.createSprite('../data/geass.jpg', {width=240, height=240}, {x=0, y=0})
 
 headerFont = MOAIFont.new()
 headerFont:loadFromTTF('../data/supernatural_knight.ttf')
@@ -27,15 +10,9 @@ headerFont:loadFromTTF('../data/supernatural_knight.ttf')
 headerStyle = MOAITextStyle.new()
 headerStyle:setColor(1, 0, 0)
 headerStyle:setFont(headerFont)
+headerStyle:setSize(52)
 
-header = MOAITextLabel.new()
-header:setStyle(headerStyle)
-header:setTextSize(64)
-header:setLoc(0, 150)
-header:setString("RISE")
-header:setYFlip(true)
-header:setAlignment(MOAITextBox.CENTER_JUSTIFY, MOAITextBox.BASELINE_JUSTIFY)
-layer:insertProp(header)
+header = GUI.createTextbox("RISE", {x=0, y=150}, headerFont, headerStyle)
 
 font = MOAIFont.new()
 font:loadFromTTF('../data/allods_west.ttf')
@@ -43,18 +20,9 @@ font:loadFromTTF('../data/allods_west.ttf')
 style = MOAITextStyle.new()
 style:setColor(0.4, 0, 0.9)
 style:setFont(font)
+style:setSize(24)
 
-text = MOAITextLabel.new()
-text:setLoc(0, -280)
-text:setString("Coming soon...")
-text:setStyle(style)
-text:setTextSize(24)
-text:setYFlip(true)
-text:setAlignment(MOAITextBox.CENTER_JUSTIFY, MOAITextBox.BASELINE_JUSTIFY)
-layer:insertProp(text)
-
-renderTable = { layer }
-MOAIRenderMgr.setRenderTable(renderTable)
+text = GUI.createTextbox("Coming soon...", {x=0, y=-280}, font, style)
 
 MOAIUntzSystem.initialize()
 
