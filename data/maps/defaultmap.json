@@ -1,0 +1,22 @@
+{
+    "name":"Default",
+    "countries":[
+        {"name":"country0", "capital":"cityA", "leader":"NPC_Zero"}, 
+        {"name":"country1", "capital":"cityB", "leader":"NPC_One"},
+    ],
+    "cities":[
+        {"name":"cityA", "owner":"country0", "buildings":[], "reputations":{"country0":100, "country1":-10}, 
+         "knightmares_num":{"country0":{"glazgo":10, "sutherland":8}, 
+                            "country1":{"glazgo": 1},},
+        },
+        
+        {"name":"cityB", "owner":"country1", "buildings":[], "reputations":{"country0":-20, "country1":95},
+         "knightmares_num":{"country1":{"glazgo":15, "sutherland":12}, 
+                            "country0":{"glazgo": 3, "sutherland":1},},
+        },
+    ],
+    "NPCs":[
+        {"name":"NPC_Zero", "type":"political", "location":"cityA"},
+        {"name":"NPC_One", "type":"military", "location":"cityB"},
+    ],
+}

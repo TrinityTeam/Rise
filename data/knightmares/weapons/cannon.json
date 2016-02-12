@@ -1,0 +1,7 @@
+{
+	"name":"Cannon",
+	"ammo":10,
+	"recharge":1,
+	"accuracy":1,
+	"distance":10
+}

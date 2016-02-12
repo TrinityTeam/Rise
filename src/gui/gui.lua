@@ -1,10 +1,10 @@
-GUI = {}
+local GUI = {}
 
 
 local viewport
 local layer
 
-
+local ResourceManager = require("resource_control.resource_manager")
 
 function GUI.openWindow(title, width, height)
 	MOAISim.openWindow(title, width, height)
@@ -38,7 +38,7 @@ end
 
 
 
-function GUI.createTextbox(text, loc, font, style)
+function GUI.createTextbox(text, loc, style)
 	local textbox = MOAITextLabel.new()
 	textbox:setStyle(style)
 	textbox:setLoc(loc.x, loc.y)
@@ -51,15 +51,8 @@ end
 
 
 
-function GUI.createSprite(filepath, size, loc)
-	local texture = MOAITexture.new()
-	texture:load(filepath)
-	local w, h = texture:getSize()
-	local k = w / h
-	
-	local image = MOAIGfxQuad2D.new()
-	image:setTexture(texture)
-	image:setRect(-size.width/2*k, -size.height/2, size.width/2*k, size.height/2)
+function GUI.createSprite(name, size, loc)
+	local image = ResourceManager:get(name)
 	
 	local prop = MOAIProp2D.new()
 	prop:setDeck(image)

@@ -1,0 +1,23 @@
+{
+    "name":"Test",
+    "generation":0,
+    "hp":42,
+    "armor":{
+    "LA" :4,
+    "RA" :4,
+    "LT" :4,
+    "RT" :4,
+    "CT" :5,
+    "HD" :1,
+    "LL" :2,
+    "RL" :2,
+    "RTL" :1,
+    "RTR" :1,
+    "RTC" :1,
+    },
+    "maneuverability":1,
+    "ground_speed":3,
+    "water_speed":1,
+    "energy":64,
+    "weapons":["machinegun", "cannon"]
+}

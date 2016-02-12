@@ -1,0 +1,3 @@
+local MenuState = {}
+
+return MenuState
