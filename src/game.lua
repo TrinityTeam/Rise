@@ -1,18 +1,17 @@
-Game = {}
+local Game = {}
 
 local ResourceManager = require("resource_control.resource_manager")
 local ResourceDefinitions = require("resource_control.resource_definitions")
+--local StateManager = require("states.state_manager")
 
 
 
 function Game.run()
 	Game.init()
-
-	while not Game.isOver do
-		coroutine.yield()
-	end
-
-	os.exit()
+	--while not Game.isOver do
+	--	coroutine.yield()
+	--end
+	--os.exit()
 end
 
 
@@ -66,6 +65,7 @@ function Game.init()
 	Game.isOver = false
 
 	MOAIInputMgr.device.keyboard:setCallback(Game.processKeyboard)
+	io.flush()
 end
 
 

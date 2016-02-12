@@ -1,6 +1,6 @@
 local FontLoader = {}
 
-local FONTS_PATH = "../data/"
+local FONTS_PATH = "../data/fonts/"
 
 
 

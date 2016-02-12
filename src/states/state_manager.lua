@@ -1,13 +1,15 @@
 local StateManager = {}
 
-
+local states = {}
 
 function StateManager:push(state)
+	--states.insert(state)
 end
 
 
 
 function StateManager:pop()
+	--states.remove(#states)
 end
 
 

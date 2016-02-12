@@ -1,6 +1,6 @@
 local SoundLoader = {}
 
-local SOUNDS_PATH = "../data/"
+local SOUNDS_PATH = "../data/sounds/"
 
 
 

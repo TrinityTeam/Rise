@@ -1,6 +1,6 @@
 local ImageLoader = {}
 
-ImageLoader.TEXTURES_PATH = "../data/"
+ImageLoader.TEXTURES_PATH = "../data/textures/"
 
 
 
