@@ -38,19 +38,6 @@ end
 
 
 
-function GUI.createTextbox(text, loc, style)
-	local textbox = MOAITextLabel.new()
-	textbox:setStyle(style)
-	textbox:setLoc(loc.x, loc.y)
-	textbox:setString(text)
-	textbox:setYFlip(true)
-	textbox:setAlignment(MOAITextBox.CENTER_JUSTIFY, MOAITextBox.BASELINE_JUSTIFY)
-	GUI.getLayer():insertProp(textbox)
-	return textbox
-end
-
-
-
 function GUI.createSprite(name, size, loc)
 	local image = ResourceManager:get(name)
 	

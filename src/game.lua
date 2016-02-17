@@ -2,23 +2,32 @@ local Game = {}
 
 local ResourceManager = require("resource_control.resource_manager")
 local ResourceDefinitions = require("resource_control.resource_definitions")
---local StateManager = require("states.state_manager")
+local StateManager = require("states.state_manager")
 
 
 
 function Game.run()
 	Game.init()
-	--while not Game.isOver do
-	--	coroutine.yield()
-	--end
-	--os.exit()
+	while not Game.isOver do
+		coroutine.yield()
+	end
+	os.exit()
 end
 
 
 
 function Game.init()
 	local GUI = require("gui.gui")
-	
+	local Label = require("gui.label")
+	local Image = require("gui.image")
+	local Button = require("gui.button")
+
+	MOAIDebugLines.setStyle ( MOAIDebugLines.PARTITION_CELLS, 2, 1, 1, 1 )
+	MOAIDebugLines.setStyle ( MOAIDebugLines.PARTITION_PADDED_CELLS, 1, 0.5, 0.5, 0.5 )
+	MOAIDebugLines.setStyle ( MOAIDebugLines.PROP_WORLD_BOUNDS, 2, 0.75, 0.75, 0.75 )
+	MOAIDebugLines.setStyle ( MOAIDebugLines.PROP_MODEL_BOUNDS, 2, 1, 1, 1 )
+	GUI.getLayer():showDebugLines(true)
+
 	ResourceDefinitions.set("geass", {	type = ResourceDefinitions.Type.Image,
 										fileName = "geass.jpg",
 										width = 1000/2,
@@ -41,26 +50,42 @@ function Game.init()
 										  fontSize = 26,
 										  dpi = 160
 								 	     })
-	GUI.createSprite('geass', {width=240, height=240}, {x=0, y=0})
+	local background = Image("geass")
+	background:setLoc(0, 0)
+	background:show()
 
 	local headerStyle = MOAITextStyle.new()
 	headerStyle:setColor(1, 0, 0)
 	headerStyle:setFont(ResourceManager:get("header font"))
 	headerStyle:setSize(52)
 	
-	GUI.createTextbox("RISE", {x=0, y=150}, headerStyle)
+	Game.header = Label(headerStyle)
+	Game.header:setText("RISE")
+	Game.header:setLoc(0, 150)
+	Game.header:show()
 	
+	Game.button = Button(headerStyle)
+	Game.button:setText("RISE")
+	Game.button:setTexture(Button.State.Normal, background)
+	Game.button:setTexture(Button.State.Hovered, background)
+	Game.button:setTexture(Button.State.Pressed, background)
+	Game.button:setCallback(function() print 'clicked' end)
+	Game.button:setLoc(0, 100)
+
 	local style = MOAITextStyle.new()
 	style:setColor(0.4, 0, 0.9)
 	style:setFont(ResourceManager:get("main font"))
 	style:setSize(24)
 	
-	GUI.createTextbox("Coming soon...", {x=0, y=-280}, style)
+	Game.text = Label(style)
+	Game.text:setText("Coming soon...")
+	Game.text:setLoc(0, -280)
+	Game.text:show()
 	
-	MOAIUntzSystem.initialize()
+	--MOAIUntzSystem.initialize()
 	
-	Game.soundtrack = ResourceManager:get("soundtrack")
-	Game.soundtrack:play()
+	--Game.soundtrack = ResourceManager:get("soundtrack")
+	--Game.soundtrack:play()
 
 	Game.isOver = false
 

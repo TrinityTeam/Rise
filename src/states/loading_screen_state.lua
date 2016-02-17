@@ -8,7 +8,7 @@ end
 
 
 
-function LoadingScreenState:show()
+function LoadingScreenState:update(deltaTime)
 
 end
 
