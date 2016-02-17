@@ -19,9 +19,8 @@ end
 function Game.init()
 	local GUI = require("gui.gui")
 	local Label = require("gui.label")
-	local Image = require("gui.image")
 	local Button = require("gui.button")
-	--[[
+	---[[
 	MOAIDebugLines.setStyle ( MOAIDebugLines.PARTITION_CELLS, 2, 1, 1, 1 )
 	MOAIDebugLines.setStyle ( MOAIDebugLines.PARTITION_PADDED_CELLS, 1, 0.5, 0.5, 0.5 )
 	MOAIDebugLines.setStyle ( MOAIDebugLines.PROP_WORLD_BOUNDS, 2, 0.75, 0.75, 0.75 )
@@ -30,9 +29,21 @@ function Game.init()
 	--]]
 	ResourceDefinitions.set("geass", {	type = ResourceDefinitions.Type.Image,
 										fileName = "geass.png",
-										width = 1000/2,
-										height = 625/2
+										width = 1540/4,
+										height = 830/4
 								 	 })
+	ResourceDefinitions.set("antigeass", {	
+									type = ResourceDefinitions.Type.Image,
+									fileName = "antigeass.png",
+									width = 1566/4,
+									height = 844/4
+							 	 })
+	ResourceDefinitions.set("kurono_kishidan", {	
+									type = ResourceDefinitions.Type.Image,
+									fileName = "kurono_kishidan.png",
+									width = 922/3,
+									height = 768/3
+							 	 })
 	ResourceDefinitions.set("soundtrack", {	type = ResourceDefinitions.Type.Sound,
 											fileName = "Rise.wav",
 											isLooping = true,
@@ -63,12 +74,17 @@ function Game.init()
 	Game.header:setLoc(0, 150)
 	Game.header:show()
 
-	local background = Image("geass")
+	local geass = MOAIProp2D.new()
+	geass:setDeck(ResourceManager:get("geass"))
+	local antigeass = MOAIProp2D.new()
+	antigeass:setDeck(ResourceManager:get("antigeass"))
+	local kurono_kishidan = MOAIProp2D.new()
+	kurono_kishidan:setDeck(ResourceManager:get("kurono_kishidan"))
 
 	Game.button = Button(headerStyle)
-	Game.button:setTexture(Button.State.Normal, background)
-	Game.button:setTexture(Button.State.Hovered, background)
-	Game.button:setTexture(Button.State.Pressed, background)
+	Game.button:setTexture(Button.State.Normal, geass)
+	Game.button:setTexture(Button.State.Hovered, antigeass)
+	Game.button:setTexture(Button.State.Pressed, kurono_kishidan)
 	Game.button:setCallback(function() Game.playOrStopMusic() end)
 	Game.button:setLoc(0, 0)
 	Game.button:show()
