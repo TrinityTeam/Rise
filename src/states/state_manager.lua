@@ -6,42 +6,53 @@ local REQUEST = {PUSH, POP, CLEAR}
 
 
 
-function StateManager:requestPush(state)
-	table.insert(self.requests, {action = REQUEST.PUSH, state = state})
+function StateManager:haveStates()
+	return #states > 0
+end
+
+
+
+function StateManager:requestPush(new_state)
+	table.insert(requests, {action = REQUEST.PUSH, state = new_state})
 end
 
 
 
 function StateManager:requestPop()
-	table.insert(self.requests, {action = REQUEST.POP})
+	table.insert(requests, {action = REQUEST.POP})
 end
 
 
 
 function StateManager:requestClear()
-	table.insert(self.requests {action = REQUEST.CLEAR})
+	table.insert(requests {action = REQUEST.CLEAR})
 end
 
 
 
 function StateManager:update(deltaTime)
 	self:processRequests()
-	for k, v in ipairs(self.states) do
+	--[[for k, v in ipairs(states) do
 		v:update(deltaTime)
 	end
+	--]]
 end
 
 
 
 function StateManager:processRequests()
-	for k, v in pairs(self.requests) do
+	for k, v in pairs(requests) do
 		if v.action == REQUEST.PUSH then
-			table.insert(self.states, v.state)
+			v.state:init()
+			v.state:show()
+			table.insert(states, v.state)
 		elseif v.action == REQUEST.POP then
-			table.remove(self.states)
+			v.state:hide()
+			table.remove(states)
 		elseif v.action == REQUEST.CLEAR then
-			self.states = {}
+			states = {}
 		end
+		table.remove(requests, k)
 	end
 end
 
