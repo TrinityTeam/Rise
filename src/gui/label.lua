@@ -44,6 +44,13 @@ end
 
 
 
+function Label:getBounds()
+	local xmin, ymin, xmax, ymax = self.textbox:getRect()
+	return {x=xmin, y=ymin, w=xmax-xmin, h=ymax-ymin}
+end
+
+
+
 setmetatable(Label, {__call = function (self, ...)
 							      return Label.new(...)
  							  end})

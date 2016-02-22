@@ -27,7 +27,8 @@ end
 
 
 
-function Button:mouseMoveEvent(x, y) 
+function Button:mouseMoveEvent(x, y)
+	assert(self.currentTexture, "You must specify button textures")
 	if self.currentTexture:inside(GUI.getLayer():wndToWorld(x, y)) then
 		self:_setCurrentTexture(self.textures[Button.State.Hovered])
 
@@ -39,6 +40,7 @@ end
 
 
 function Button:mousePressEvent(isPressed) 
+	assert(self.currentTexture, "You must specify button textures")
 	if isPressed then
 		if self.currentTexture == self.textures[Button.State.Hovered] then
 			self:_setCurrentTexture(self.textures[Button.State.Pressed])
@@ -55,7 +57,6 @@ end
 
 function Button:setTexture(state, image)
 	self.textures[state] = image
-	print(state, self.textures[state])
 	if self.currentTexture == nil then
 		self.currentTexture = image
 	end
@@ -64,6 +65,7 @@ end
 
 
 function Button:show()
+	assert(self.currentTexture, "You must specify button textures")
 	self.isShown = true
 	GUI.getLayer():insertProp(self.currentTexture)
 	self.text:show()

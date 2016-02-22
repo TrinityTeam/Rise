@@ -3,6 +3,7 @@ local Game = {}
 local StateManager = require("states.state_manager")
 local DefinitionsList = require("resource_control.definitions_list")
 local MenuState = require("states.menu_state")
+local GameState = require("states.game_state")
 
 
 function Game.run()
@@ -28,12 +29,15 @@ function Game.init()
 	
 	DefinitionsList.init()
 
-	StateManager:requestPush(MenuState)
+	StateManager:registerState("Game", GameState)
+	StateManager:registerState("Menu", MenuState)
+	StateManager:requestPush("Game")
 
 	Game.isOver = false
 
 	MOAIInputMgr.device.keyboard:setCallback(Game.processKeyboard)
 	io.flush()
+	print '============================================'
 end
 
 

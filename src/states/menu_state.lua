@@ -3,6 +3,7 @@ local GUI = require("gui.gui")
 local Label = require("gui.label")
 local Button = require("gui.button")
 local ResourceManager = require("resource_control.resource_manager")
+local StateManager = require("states.state_manager")
 
 
 
@@ -29,7 +30,7 @@ function MenuState:init()
 	self.button:setTexture(Button.State.Normal, geass)
 	self.button:setTexture(Button.State.Hovered, antigeass)
 	self.button:setTexture(Button.State.Pressed, kurono_kishidan)
-	self.button:setCallback(function() self:playOrStopMusic() end)
+	self.button:setCallback(function() StateManager:requestPush("Game") end)
 	self.button:setLoc(0, 0)
 
 	local style = MOAITextStyle.new()
