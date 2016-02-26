@@ -39,10 +39,9 @@ end
 
 function StateManager:update(deltaTime)
 	self:processRequests()
-	--[[for k, v in ipairs(states) do
+	for k, v in ipairs(states) do
 		v:update(deltaTime)
 	end
-	--]]
 end
 
 
@@ -50,13 +49,11 @@ end
 function StateManager:processRequests()
 	for k, v in pairs(requests) do
 		if v.action == REQUEST.PUSH then
-			print 'push'
 			v.state:init()
 			v.state:show()
 			table.insert(states, v.state)
 
 		elseif v.action == REQUEST.POP then
-			print 'pop'
 			states[#states]:hide()
 			table.remove(states)
 

@@ -12,7 +12,6 @@ function Button.new(text_style)
 	self.textures = {}
 	self.isShown = false
 
-	MOAIInputMgr.device.pointer:setCallback(function(x, y) self:mouseMoveEvent(x, y) end)
 	MOAIInputMgr.device.mouseLeft:setCallback(function(isPressed) self:mousePressEvent(isPressed) end)
 
 	setmetatable(self, {__index = Button})
@@ -27,11 +26,13 @@ end
 
 
 
-function Button:mouseMoveEvent(x, y)
+function Button:update(deltaTime)
+	local x, y = GUI:getLayer():wndToWorld(MOAIInputMgr.device.pointer:getLoc())
 	assert(self.currentTexture, "You must specify button textures")
-	if self.currentTexture:inside(GUI.getLayer():wndToWorld(x, y)) then
-		self:_setCurrentTexture(self.textures[Button.State.Hovered])
-
+	if self.currentTexture:inside(x, y) then
+		if self.currentTexture == self.textures[Button.State.Normal] then
+			self:_setCurrentTexture(self.textures[Button.State.Hovered])
+		end
 	else
 		self:_setCurrentTexture(self.textures[Button.State.Normal])
 	end

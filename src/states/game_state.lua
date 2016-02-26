@@ -45,4 +45,10 @@ end
 
 
 
+function GameState:update(deltaTime)
+    self.button:update(deltaTime)
+end
+
+
+
 return GameState

@@ -31,13 +31,11 @@ function Game.init()
 
 	StateManager:registerState("Game", GameState)
 	StateManager:registerState("Menu", MenuState)
-	StateManager:requestPush("Game")
+	StateManager:requestPush("Menu")
 
 	Game.isOver = false
 
 	MOAIInputMgr.device.keyboard:setCallback(Game.processKeyboard)
-	io.flush()
-	print '============================================'
 end
 
 

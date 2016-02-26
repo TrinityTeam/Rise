@@ -30,7 +30,10 @@ function MenuState:init()
 	self.button:setTexture(Button.State.Normal, geass)
 	self.button:setTexture(Button.State.Hovered, antigeass)
 	self.button:setTexture(Button.State.Pressed, kurono_kishidan)
-	self.button:setCallback(function() StateManager:requestPush("Game") end)
+	self.button:setCallback(function()
+                                StateManager:requestPop()
+                                StateManager:requestPush("Game") 
+                            end)
 	self.button:setLoc(0, 0)
 
 	local style = MOAITextStyle.new()
@@ -54,10 +57,16 @@ end
 
 
 
-function MenuState.hide()
+function MenuState:hide()
     self.header:hide()
     self.button:hide()
     self.text:hide()
+end
+
+
+
+function MenuState:update(deltaTime)
+    self.button:update()
 end
 
 
