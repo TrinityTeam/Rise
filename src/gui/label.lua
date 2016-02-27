@@ -44,6 +44,16 @@ end
 
 
 
+function Label:setSize(width, height)
+	local xmin, ymin, xmax, ymax = self.textbox:getRect()
+	local origin = {x = xmin+(xmax-xmin)/2, 
+					y = ymin+(ymax-ymin)/2}
+	self.textbox:setRect(origin.x - width/2, origin.y - height/2,
+						 origin.x + width/2, origin.y + height /2)
+end
+
+
+
 function Label:getBounds()
 	local xmin, ymin, xmax, ymax = self.textbox:getRect()
 	return {x=xmin, y=ymin, w=xmax-xmin, h=ymax-ymin}

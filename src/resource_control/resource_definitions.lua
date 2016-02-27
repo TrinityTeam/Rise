@@ -13,7 +13,6 @@ end
 
 
 
-
 function ResourceDefinitions.get(name)
 	return definitions[name]
 end

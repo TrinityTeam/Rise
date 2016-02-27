@@ -10,6 +10,8 @@ local StateManager = require("states.state_manager")
 function MenuState:init()
 	self.soundtrack = ResourceManager:get("soundtrack")
 
+    self:playOrStopMusic()
+
 	local headerStyle = MOAITextStyle.new()
 	headerStyle:setColor(1, 0, 0)
 	headerStyle:setFont(ResourceManager:get("header font"))
@@ -27,12 +29,13 @@ function MenuState:init()
 	kurono_kishidan:setDeck(ResourceManager:get("kurono_kishidan"))
 
 	self.button = Button(headerStyle)
-	self.button:setTexture(Button.State.Normal, geass)
-	self.button:setTexture(Button.State.Hovered, antigeass)
-	self.button:setTexture(Button.State.Pressed, kurono_kishidan)
+    self.button:setTexture(Button.State.Normal, ResourceManager:get("geass"))
+    self.button:setTexture(Button.State.Hovered, ResourceManager:get("antigeass"))
+    self.button:setTexture(Button.State.Pressed, ResourceManager:get("kurono_kishidan"))
 	self.button:setCallback(function()
                                 StateManager:requestPop()
-                                StateManager:requestPush("Game") 
+                                StateManager:requestPush("Game")
+                                self:playOrStopMusic()
                             end)
 	self.button:setLoc(0, 0)
 
@@ -66,14 +69,14 @@ end
 
 
 function MenuState:update(deltaTime)
-    self.button:update()
+    self.button:update(deltaTime)
 end
 
 
 
 function MenuState:playOrStopMusic()
     if self.soundtrack:isPlaying() then
-        self.soundtrack:pause()
+        self.soundtrack:stop()
     else
         self.soundtrack:play()
     end
