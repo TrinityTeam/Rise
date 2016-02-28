@@ -21,6 +21,12 @@ function DefinitionList.init()
     								width = 922/3,
     								height = 768/3
     						 	 })
+    ResourceDefinitions.set("britannia", {    
+                                    type = ResourceDefinitions.Type.Image,
+                                    fileName = "britannia.png",
+                                    width = 800,
+                                    height = 600
+                                 })
     ResourceDefinitions.set("soundtrack", {	type = ResourceDefinitions.Type.Sound,
       										fileName = "Rise.wav",
     										isLooping = true,

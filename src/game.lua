@@ -4,6 +4,8 @@ local StateManager = require("states.state_manager")
 local DefinitionsList = require("resource_control.definitions_list")
 local MenuState = require("states.menu_state")
 local GameState = require("states.game_state")
+local BritanniaState = require("states.test_britannia_state")
+
 
 
 function Game.run()
@@ -31,7 +33,8 @@ function Game.init()
 
 	StateManager:registerState("Game", GameState)
 	StateManager:registerState("Menu", MenuState)
-	StateManager:requestPush("Menu")
+	StateManager:registerState("Britannia", BritanniaState)
+	StateManager:requestPush("Britannia")
 
 	Game.isOver = false
 

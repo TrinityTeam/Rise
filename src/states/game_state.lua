@@ -10,13 +10,6 @@ function GameState:init()
     style:setFont(ResourceManager:get("main font"))
     style:setSize(24)
 
-    local geass = MOAIProp2D.new()
-    geass:setDeck(ResourceManager:get("geass"))
-    local antigeass = MOAIProp2D.new()
-    antigeass:setDeck(ResourceManager:get("antigeass"))
-    local kurono_kishidan = MOAIProp2D.new()
-    kurono_kishidan:setDeck(ResourceManager:get("kurono_kishidan"))
-
     self.button = Button(style)
     self.button:setTexture(Button.State.Normal, ResourceManager:get("geass"))
     self.button:setTexture(Button.State.Hovered, ResourceManager:get("antigeass"))
