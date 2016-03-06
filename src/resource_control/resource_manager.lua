@@ -19,7 +19,7 @@ end
 function ResourceManager:load(name)
 	local definition = ResourceDefinitions.get(name)
 	if definition == nil then
-		print("ERROR: Resource definition for "..name.." not found")
+		error("Resource definition for "..name.." not found")
 		return
 	end
 

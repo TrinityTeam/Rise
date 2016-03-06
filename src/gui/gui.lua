@@ -5,6 +5,8 @@ local layer
 
 local ResourceManager = require("resource_control.resource_manager")
 
+
+
 function GUI.openWindow(title, width, height)
 	MOAISim.openWindow(title, width, height)
 	viewport = MOAIViewport.new()

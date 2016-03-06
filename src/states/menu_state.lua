@@ -1,9 +1,7 @@
 local MenuState = {}
-local GUI = require("gui.gui")
-local Label = require("gui.label")
-local Button = require("gui.button")
 local ResourceManager = require("resource_control.resource_manager")
 local StateManager = require("states.state_manager")
+local GuiParser = require("resource_control.gui_parser")
 
 
 
@@ -12,57 +10,31 @@ function MenuState:init()
 
     self:playOrStopMusic()
 
-	local headerStyle = MOAITextStyle.new()
-	headerStyle:setColor(1, 0, 0)
-	headerStyle:setFont(ResourceManager:get("header font"))
-	headerStyle:setSize(52)
+    self.guiRoot = GuiParser.readFrom("main_menu.json")
 
-	self.header = Label(headerStyle)
-	self.header:setText("RISE")
-	self.header:setLoc(0, 150)
-
-	self.button = Button(headerStyle)
-    self.button:setTexture(Button.State.Normal, ResourceManager:get("geass"))
-    self.button:setTexture(Button.State.Hovered, ResourceManager:get("antigeass"))
-    self.button:setTexture(Button.State.Pressed, ResourceManager:get("kurono_kishidan"))
-	self.button:setCallback(function()
+    self.guiRoot:getWidget("next_state"):setCallback(function()
                                 StateManager:requestPop()
                                 StateManager:requestPush("Game")
                                 self:playOrStopMusic()
                             end)
-	self.button:setLoc(0, 0)
-
-	local style = MOAITextStyle.new()
-	style:setColor(0.4, 0, 0.9)
-	style:setFont(ResourceManager:get("main font"))
-	style:setSize(24)
-	
-    self.text = Label(style)
-    self.text:setText("Coming soon...")
-    self.text:setLoc(0, -280)
 end
 
 
 
-
 function MenuState:show()
-    self.header:show()
-    self.button:show()
-    self.text:show()
+    self.guiRoot:show()
 end
 
 
 
 function MenuState:hide()
-    self.header:hide()
-    self.button:hide()
-    self.text:hide()
+    self.guiRoot:hide()
 end
 
 
 
 function MenuState:update(deltaTime)
-    self.button:update(deltaTime)
+    self.guiRoot:update(deltaTime)
 end
 
 

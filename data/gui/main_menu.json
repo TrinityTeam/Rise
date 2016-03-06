@@ -1,0 +1,17 @@
+{
+    "buttons":
+    [{"id" : "next_state", 
+      "textures":{"normal":"geass", "hovered":"antigeass", "pressed":"kurono_kishidan"}, 
+      "text":"", "font":"header font", "loc":{"x": 0, "y": 0}, "text_size": 52, 
+      "text_color": {"r": 1, "g": 0, "b": 0}}],
+
+    "labels":
+    [{"id":"rise",
+      "text":"Rise", "font":"header font", "loc":{"x": 0, "y": 150}, "text_size": 52, 
+      "text_color": {"r": 1, "g": 0, "b": 0}}, 
+
+     {"id":"coming_soon",
+      "text":"Coming soon..", "font":"main font", "loc":{"x": 0, "y": -280}, "text_size": 24, 
+      "text_color": {"r": 0.4, "g": 0, "b": 0.9}}]
+
+}
