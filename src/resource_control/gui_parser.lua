@@ -39,6 +39,7 @@ end
 
 
 function GUI_Parser.readFrom(filename)
+    print("READ "..filename)
     local fullpath = "../data/gui/"..filename
 
     f = io.open(fullpath)

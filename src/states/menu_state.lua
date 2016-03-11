@@ -6,17 +6,20 @@ local GuiParser = require("resource_control.gui_parser")
 
 
 function MenuState:init()
-	self.soundtrack = ResourceManager:get("soundtrack")
+	if self.soundtrack == nil then
+    --self.soundtrack = ResourceManager:get("soundtrack")
+    end
+    --self:playOrStopMusic()
 
-    self:playOrStopMusic()
-
-    self.guiRoot = GuiParser.readFrom("main_menu.json")
-
-    self.guiRoot:getWidget("next_state"):setCallback(function()
-                                StateManager:requestPop()
-                                StateManager:requestPush("Game")
-                                self:playOrStopMusic()
-                            end)
+    if self.guiRoot == nil then
+        self.guiRoot = GuiParser.readFrom("main_menu.json")
+    
+        self.guiRoot:getWidget("next_state"):setCallback(function()
+                                    StateManager:requestPop()
+                                    StateManager:requestPush("Game")
+          --                        self:playOrStopMusic()
+                                end)
+    end
 end
 
 
