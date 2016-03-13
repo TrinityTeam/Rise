@@ -16,7 +16,7 @@ function MenuState:init()
     
         self.guiRoot:getWidget("next_state"):setCallback(function()
                                     StateManager:requestPop()
-                                    StateManager:requestPush("Game")
+                                    StateManager:requestPush("Assault")
           --                        self:playOrStopMusic()
                                 end)
     end

@@ -18,9 +18,9 @@ end
 
 
 
-function StateManager:requestPush(new_state_id)
+function StateManager:requestPush(new_state_id, ...)
 	assert(registered_states[new_state_id], new_state_id.." state unregistered!")
-	table.insert(requests, {action = REQUEST.PUSH, state = registered_states[new_state_id]})
+	table.insert(requests, {action = REQUEST.PUSH, state = registered_states[new_state_id], args = ...})
 end
 
 
@@ -49,7 +49,7 @@ end
 function StateManager:processRequests()
 	for k, v in pairs(requests) do
 		if v.action == REQUEST.PUSH then
-			v.state:init()
+			v.state:init(v.args)
 			v.state:show()
 			table.insert(states, v.state)
 

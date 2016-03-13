@@ -114,7 +114,7 @@ end
 
 
 setmetatable(Button, {__call = function (self, ...)
-							      return Button.new(...)
+							      return self.new(...)
  							   end})
 
 return Button

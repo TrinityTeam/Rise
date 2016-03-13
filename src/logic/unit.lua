@@ -39,6 +39,25 @@ end
 
 
 
+function Unit:getId()
+    return self.id or error("ID unspecified")
+end
+
+
+
+function Unit:setPosition(pos)
+    self.pos = {x = pos.x or error("X is nil"), 
+                y = pos.y or error("Y is nil")}
+end
+
+
+
+function Unit:getPosition()
+    return self.pos
+end
+
+
+
 setmetatable(Unit, {__call = function (self, ...)
                                  return Unit.new(...)
                              end})

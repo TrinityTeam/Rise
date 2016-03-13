@@ -30,18 +30,28 @@ function Game.init(players)
         for id, unit in pairs(players[name].units) do
             pos = pos + 1
             unit.owner = name
+            unit.id = id
             Game.units[id] = unit
-            Game.field:addUnit(id, {x = pos % Game.field:getSize().w, 
-                                    y = math.ceil(pos / Game.field:getSize().w)})
+            Game.field:addUnit(unit, {x = pos % Game.field:getSize().w, 
+                                      y = math.ceil(pos / Game.field:getSize().w)})
         end
     end
 
     for id, unit in pairs(Game.units) do
-        print(id, Game.field:getUnitPos(id).x, Game.field:getUnitPos(id).y)
+        print(id, unit:getPosition().x, unit:getPosition().y)
     end
 end
 
 
+
+local function printRecursive(...)
+    for k, v in pairs(...) do
+        print(k, v)
+        if type(v) == "table" then
+            printRecursive(v)
+        end
+    end
+end
 
 function parseCommand(s)
     local args = {} 
@@ -61,18 +71,19 @@ function parseCommand(s)
             print("You must specify the unit, which data interests you")
             return
         end
-        for k, v in pairs(Game.units[args[2]]) do
-            print(k, v)
+        printRecursive(Game.units[args[2]])
+
+    elseif args[1] == "attack" then
+        if #args < 2 then 
+            error("You must specify the attacking unit")
         end
-        print("pos: ", Game.field:getUnitPos(args[2]).x, 
-                       Game.field:getUnitPos(args[2]).y)
 
     elseif args[1] == "exit" then
         os.exit()
 
     else
         print("Invalid command "..args[1])
-        return
+        return 
     end
 end
 

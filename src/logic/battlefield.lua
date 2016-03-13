@@ -20,7 +20,7 @@ end
 
 
 local function isPosInBounds(pos, size)
-    if pos.x >= 0 and pos.y >= 0 and pos.x < size.w and pos.y < size.h then
+    if pos.x > 0 and pos.y > 0 and pos.x <= size.w and pos.y <= size.h then
         return true
     else
         return false
@@ -29,25 +29,20 @@ end
 
 
 
-function BattleField:addUnit(id, pos)
+function BattleField:addUnit(unit)
+    local pos = unit:getPosition()
     assert(isPosInBounds(pos, self.size), "Position "..pos.x..":"..pos.y.." are out of field bounds")
     assert(self.unitsByPos[pos.x][pos.y] == nil, "Position "..pos.x..":"..pos.y.." are occupied")
-    assert(self.unitsByName[id] == nil, "Unit "..id.." already exist")
-    self.unitsByPos[pos.x][pos.y] = id
-    self.unitsByName[id] = { x = pos.x, y = pos.y}
+    assert(self.unitsByName[unit:getId()] == nil, "Unit "..unit:getId().." already exist")
+    self.unitsByPos[pos.x][pos.y] = unit
+    self.unitsByName[unit:getId()] = unit
 end
 
 
 
-function BattleField:getUnitId(pos)
+function BattleField:getUnit(pos)
     assert(isPosInBounds(pos, self.size))
     return self.unitsByPos[pos.x][pos.y]
-end
-
-
-
-function BattleField:getUnitPos(id)
-    return self.unitsByName[id]
 end
 
 
@@ -56,16 +51,28 @@ function BattleField:moveUnit(id, destination)
     assert(isPosInBounds(destination, self.size))
     assert(self.unitsByPos[destination.x][destination.y] == nil, 
            "Position "..destination.x..":"..destination.y.." are occupied")
-    local unitPos = self.unitsByName[id]
+    local unit = self.unitsByName[id]
     self.unitsByPos[destination.x][destination.y] = id
-    self.unitsByPos[unitPos.x][unitPos.y] = nil
-    unitPos = {x = destination.x, y = destination.y}
+    self.unitsByPos[unit:getPosition().x][unit:getPosition().y] = nil
+    unit:setPosition(destination)
 end
 
 
 
 function BattleField:getSize()
     return self.size
+end
+
+
+
+function BattleField:getHeight()
+    return self.size.h
+end
+
+
+
+function BattleField:getWidth()
+    return self.size.w
 end
 
 
