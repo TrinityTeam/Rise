@@ -82,9 +82,14 @@ end
 
 
 function AssaultState:update(deltaTime)
+    
     --self.guiRoot:update(deltaTime)
 end
 
 
+
+function AssaultState:mousePressEvent(down)
+    print(MOAIInputMgr.device.pointer.x, down)
+end
 
 return AssaultState

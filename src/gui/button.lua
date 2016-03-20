@@ -1,4 +1,5 @@
 local Button = {}
+local Class = require("class")
 local GUI = require("gui.gui")
 local Label = require("gui.label")
 Button.State = {Normal = 1, Pressed = 2, Hovered = 3}
@@ -17,8 +18,6 @@ function Button.new(text_style)
 	MOAIInputMgr.device.mouseLeft:setCallback(function(isPressed) 
 											  	  self:mousePressEvent(isPressed) 
 											  end)
-
-	setmetatable(self, {__index = Button})
 	return self
 end
 
@@ -111,10 +110,6 @@ function Button:_setState(state)
 	self.currentTexture:setDeck(self.textures[state])
 end
 
-
-
-setmetatable(Button, {__call = function (self, ...)
-							      return self.new(...)
- 							   end})
+Class.register(Button)
 
 return Button

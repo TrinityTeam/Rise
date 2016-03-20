@@ -1,5 +1,5 @@
 local BattleData = {}
-
+local Class = require("class")
 
 
 function BattleData.new(battlefield, units)
@@ -12,12 +12,11 @@ function BattleData.new(battlefield, units)
         battlefield:addUnit(unit)
     end
 
-    setmetatable(self, {__index = BattleData})
     return self
 end
 
 
 
-setmetatable(BattleData, {__call = function(self, ...) return self.new(...) end})
+Class.register(BattleData)
 
 return BattleData

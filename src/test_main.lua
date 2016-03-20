@@ -53,6 +53,8 @@ local function printRecursive(...)
     end
 end
 
+
+
 function parseCommand(s)
     local args = {} 
 
@@ -64,7 +66,7 @@ function parseCommand(s)
     if #args == 0 then return end 
 
     if args[1] == "help" then
-        print("Are you think that you in fairy tail?")
+        print("Do you think you're in fairy tail?")
 
     elseif args[1] == "info" then
         if #args < 2 then 

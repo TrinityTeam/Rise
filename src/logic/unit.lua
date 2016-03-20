@@ -1,5 +1,5 @@
 local Unit = {}
-
+local Class = require("class")
 
 
 function Unit.new(hp, speed, attack)
@@ -9,7 +9,6 @@ function Unit.new(hp, speed, attack)
     self.speed = speed or error("You must specify speed")
     self.attack = attack or error("You must specify attack")
 
-    setmetatable(self, {__index = Unit})
     return self    
 end
 
@@ -58,8 +57,6 @@ end
 
 
 
-setmetatable(Unit, {__call = function (self, ...)
-                                 return Unit.new(...)
-                             end})
+Class.register(Unit)
 
 return Unit

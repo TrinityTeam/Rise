@@ -16,6 +16,7 @@ function Game.run()
 	while not Game.isOver do
 		StateManager:update()
 		coroutine.yield()
+		io.flush()
 	end
 	os.exit()
 end
@@ -69,11 +70,12 @@ function Game.init()
 	StateManager:registerState("Game", GameState)
 	StateManager:registerState("Menu", MenuState)
 	StateManager:registerState("Assault", AssaultState)
-	StateManager:requestPush("Assault", data)
+	StateManager:requestPush("Menu", data)
 
 	Game.isOver = false
 
 	MOAIInputMgr.device.keyboard:setCallback(Game.processKeyboard)
+	MOAIInputMgr.device.pointer:setCallback(StateManager.mouseClickEvent)
 end
 
 

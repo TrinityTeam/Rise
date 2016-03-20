@@ -46,7 +46,7 @@ function GUI_Parser.readFrom(filename)
     local text = f:read("*a")
     local file = MOAIJsonParser.decode(text)
     
-    local gui_root = GUI_Root.new()
+    local gui_root = GUI_Root()
     for k, v in pairs(file.buttons) do
         gui_root:addWidget(readButton(v))
     end

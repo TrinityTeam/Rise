@@ -6,6 +6,7 @@ local REQUEST = {PUSH = 1, POP = 2, CLEAR = 3}
 local registered_states = {}
 
 
+
 function StateManager:registerState(id, state)
 	registered_states[id] = state
 end
@@ -39,8 +40,18 @@ end
 
 function StateManager:update(deltaTime)
 	self:processRequests()
-	for k, v in ipairs(states) do
+	for k, v in pairs(states) do
 		v:update(deltaTime)
+	end
+end
+
+
+
+function StateManager:mouseClickEvent(pressed)
+	for k, v in pairs(states) do
+		if v.mouseClickEvent ~= nil then
+			v:mouseClickEvent(pressed)
+		end
 	end
 end
 
