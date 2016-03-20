@@ -7,7 +7,7 @@ function Class.register(prototype)
         error("Prototype can't be nil")
     end
     if prototype.new == nil then
-        error("You must specify class constructor(member function 'new(...)'")
+        prototype.new = function() local self = {}; return self; end
     end
     
     local metatable = {}
@@ -23,6 +23,20 @@ function Class.register(prototype)
     setmetatable(prototype, metatable)
 
     return prototype
+end
+
+
+function Class.registerSingleton(class)
+    if class == nil then
+        error("Prototype can't be nil")
+    end
+
+    local metatable = {}
+    metatable.__metatable = "Private metatable"
+    metatable.__index = function(t, k) error("Nil field "..k.." requested") end
+    setmetatable(class, metatable)
+
+    return class
 end
 
 

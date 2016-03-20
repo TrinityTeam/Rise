@@ -1,4 +1,5 @@
 local StateManager = {}
+local Class = require("class")
 
 local states = {}
 local requests = {}
@@ -75,5 +76,7 @@ function StateManager:processRequests()
 	end
 end
 
+
+Class.registerSingleton(StateManager)
 
 return StateManager

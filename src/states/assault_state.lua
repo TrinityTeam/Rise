@@ -1,6 +1,6 @@
 local AssaultState = {}
-
-local GuiParser = require("resource_control.gui_parser")
+local Class = require("class")
+local GuiParser = require("resource_control.data_parsers.gui_parser")
 local StateManager = require("states.state_manager")
 local GUI = require("gui.gui")
 local ResourceManager = require("resource_control.resource_manager")
@@ -91,5 +91,9 @@ end
 function AssaultState:mousePressEvent(down)
     print(MOAIInputMgr.device.pointer.x, down)
 end
+
+
+
+Class.registerSingleton(AssaultState)
 
 return AssaultState

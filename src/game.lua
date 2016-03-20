@@ -8,7 +8,8 @@ local AssaultState = require("states.assault_state")
 local Battlefield = require("logic.battlefield")
 local Unit = require("logic.unit")
 local BattleData = require("logic.battle_data")
-
+local GUI = require("gui.gui")
+local Class = require("class")
 
 
 function Game.run()
@@ -70,7 +71,7 @@ function Game.init()
 	StateManager:registerState("Game", GameState)
 	StateManager:registerState("Menu", MenuState)
 	StateManager:registerState("Assault", AssaultState)
-	StateManager:requestPush("Menu", data)
+	StateManager:requestPush("Game", data)
 
 	Game.isOver = false
 
@@ -87,5 +88,8 @@ function Game.processKeyboard(key, down)
 		end
 	end
 end
+
+
+Class.registerSingleton(Game)
 
 return Game
