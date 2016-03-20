@@ -76,7 +76,7 @@ function Game.init()
 	Game.isOver = false
 
 	MOAIInputMgr.device.keyboard:setCallback(Game.processKeyboard)
-	MOAIInputMgr.device.pointer:setCallback(StateManager.mouseClickEvent)
+	MOAIInputMgr.device.pointer:setCallback(StateManager.mousePressEvent)
 end
 
 

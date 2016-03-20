@@ -48,11 +48,9 @@ end
 
 
 
-function StateManager:mouseClickEvent(pressed)
+function StateManager:mousePressEvent(pressed)
 	for k, v in pairs(states) do
-		if v.mouseClickEvent ~= nil then
-			v:mouseClickEvent(pressed)
-		end
+		v:mousePressEvent(pressed)
 	end
 end
 

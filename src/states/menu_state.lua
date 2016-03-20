@@ -52,6 +52,8 @@ end
 
 
 
+function MenuState:mousePressEvent() end
+
 Class.registerSingleton(MenuState)
 
 return MenuState
