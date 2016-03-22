@@ -5,7 +5,7 @@ local ResourceDefinitions = require("resource_control.resource_definitions")
 
 function DefinitionList.init()
     ResourceDefinitions.set("geass", {	type = ResourceDefinitions.Type.Image,
-   									fileName = "geass.png",
+   								    	fileName = "geass.png",
     									width = 1540/4,
     									height = 830/4
     							 	 })
@@ -32,17 +32,17 @@ function DefinitionList.init()
     										isLooping = true,
     										volume = 1
     							 	      })
-    ResourceDefinitions.set("header font", {type = ResourceDefinitions.Type.Font,
+    ResourceDefinitions.set("header_font", {type = ResourceDefinitions.Type.Font,
     										fileName = "supernatural_knight.ttf",
     										glyphs = "qwertyuiopasdfghjklzxcvbnm!@#$%^&*()_+:\"{}<>?,./';[]0123456789",
     										fontSize = 26,
     										dpi = 160
     							 	       })
-    ResourceDefinitions.set("main font", {type = ResourceDefinitions.Type.Font,
-    									  fileName = "allods_west.ttf",
-    									  glyphs = "qwertyuiopasdfghjklzxcvbnm!@#$%^&*()_+:\"{}<>?,./';[]0123456789",
-    									  fontSize = 26,
-    									  dpi = 160
+    ResourceDefinitions.set("default_font", {type = ResourceDefinitions.Type.Font,
+    									     fileName = "allods_west.ttf",
+    									     glyphs = "qwertyuiopasdfghjklzxcvbnm!@#$%^&*()_+:\"{}<>?,./';[]0123456789",
+    									     fontSize = 26,
+    									     dpi = 160
     							 	     })
 end
 

@@ -1,4 +1,5 @@
 local Label = {}
+local Class = require("class")
 local GUI = require("gui.gui")
 
 
@@ -14,7 +15,6 @@ function Label.new(style)
 							  MOAITextBox.BASELINE_JUSTIFY)
 
 
-	setmetatable(self, {__index = Label})
 	return self
 end
 
@@ -61,8 +61,11 @@ end
 
 
 
-setmetatable(Label, {__call = function (self, ...)
-							      return Label.new(...)
- 							  end})
+function Label:update()
+
+end
+
+
+Class.register(Label)
 
 return Label

@@ -1,0 +1,15 @@
+wk 2 1
+u3 3 1
+u1 4 1
+u2 5 1
+READ game_ui.json
+READ default_button.json
+Load default_font from allods_west.ttf resource type 2
+Load ../data/fonts/ allods_west.ttf
+Load geass from geass.png resource type 0
+Load antigeass from antigeass.png resource type 0
+Load kurono_kishidan from kurono_kishidan.png resource type 0
+READ main_menu.json
+Load header_font from supernatural_knight.ttf resource type 2
+Load ../data/fonts/ supernatural_knight.ttf
+READ default_label.json

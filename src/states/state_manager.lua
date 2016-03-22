@@ -1,9 +1,11 @@
 local StateManager = {}
+local Class = require("class")
 
 local states = {}
 local requests = {}
 local REQUEST = {PUSH = 1, POP = 2, CLEAR = 3}
 local registered_states = {}
+
 
 
 function StateManager:registerState(id, state)
@@ -18,9 +20,9 @@ end
 
 
 
-function StateManager:requestPush(new_state_id)
+function StateManager:requestPush(new_state_id, ...)
 	assert(registered_states[new_state_id], new_state_id.." state unregistered!")
-	table.insert(requests, {action = REQUEST.PUSH, state = registered_states[new_state_id]})
+	table.insert(requests, {action = REQUEST.PUSH, state = registered_states[new_state_id], args = ...})
 end
 
 
@@ -39,8 +41,16 @@ end
 
 function StateManager:update(deltaTime)
 	self:processRequests()
-	for k, v in ipairs(states) do
+	for k, v in pairs(states) do
 		v:update(deltaTime)
+	end
+end
+
+
+
+function StateManager:mousePressEvent(pressed)
+	for k, v in pairs(states) do
+		v:mousePressEvent(pressed)
 	end
 end
 
@@ -49,7 +59,7 @@ end
 function StateManager:processRequests()
 	for k, v in pairs(requests) do
 		if v.action == REQUEST.PUSH then
-			v.state:init()
+			v.state:init(v.args)
 			v.state:show()
 			table.insert(states, v.state)
 
@@ -64,5 +74,7 @@ function StateManager:processRequests()
 	end
 end
 
+
+Class.registerSingleton(StateManager)
 
 return StateManager

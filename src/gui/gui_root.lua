@@ -1,4 +1,5 @@
 local GUI_Root = {}
+local Class = require("class")
 local GUI = require("gui.gui")
 
 
@@ -8,7 +9,6 @@ function GUI_Root.new()
 
     self.widgets = {}
 
-    setmetatable(self, {__index = GUI_Root})
     return self
 end
 
@@ -16,9 +16,7 @@ end
 
 function GUI_Root:update(deltaTime)
     for k, v in pairs(self.widgets) do
-        if self.widgets[k].update then
-            self.widgets[k]:update(deltaTime)
-        end
+        self.widgets[k]:update(deltaTime)
     end
 end
 
@@ -54,11 +52,6 @@ function GUI_Root:hide()
     end
 end
 
-
-
-setmetatable(GUI_Root, {__call = function (self, ...)
-                                     return GUI_Root.new(...)
-                                 end})
-
+Class.register(GUI_Root)
 
 return GUI_Root

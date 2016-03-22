@@ -1,12 +1,6 @@
 {
     "buttons":[
     {"id":"next_state",
-     "textures":{"normal":"geass","hovered":"antigeass","pressed":"kurono_kishidan"},
-     "text_size":32, "text":"Game", "loc":{"x":0, "y":0}, "text_color": {"r": 1, "g": 1, "b": 1},
-     "font":"main font"
-    }
-    ],
-
-    "labels":[
+     "text":"Game"}
     ]
 }

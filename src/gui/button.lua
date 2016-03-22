@@ -1,4 +1,5 @@
 local Button = {}
+local Class = require("class")
 local GUI = require("gui.gui")
 local Label = require("gui.label")
 Button.State = {Normal = 1, Pressed = 2, Hovered = 3}
@@ -14,10 +15,14 @@ function Button.new(text_style)
 	self.state = Button.State.Normal
 	self.isShown = false
 
-	-- Backup: MOAIInputMgr.device.mouseLeft:setCallback(function(isPressed) self:mousePressEvent(isPressed) end)
+    -- Backup: MOAIInputMgr.device.mouseLeft:setCallback(function(isPressed) self:mousePressEvent(isPressed) end)
     MOAIInputMgr.device.mouseLeft:setCallback(self:mousePressEvent)
 
 	setmetatable(self, {__index = Button})
+
+	MOAIInputMgr.device.mouseLeft:setCallback(function(isPressed) 
+											  	  self:mousePressEvent(isPressed) 
+											  end)
 	return self
 end
 
@@ -62,7 +67,6 @@ function Button:setSize(width, height)
 	self.text:setSize(width, height)
 	local x, y = self.currentTexture:getDims()
 	self.currentTexture:setScl(width / x, height / y, 1)
-	print(self.currentTexture:getWorldBounds())
 end
 
 
@@ -110,10 +114,6 @@ function Button:_setState(state)
 	self.currentTexture:setDeck(self.textures[state])
 end
 
-
-
-setmetatable(Button, {__call = function (self, ...)
-							      return Button.new(...)
- 							   end})
+Class.register(Button)
 
 return Button

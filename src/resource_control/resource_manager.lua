@@ -23,14 +23,14 @@ function ResourceManager:load(name)
 		return
 	end
 
-	print("Load "..name.." from "..definition.fileName.." resource type "..definition.type)
+	io.write("Load ", name, " from ", definition.fileName, " resource type ", definition.type, "\n")
 
 	local resource
 	if definition.type == ResourceDefinitions.Type.Image then
 		local ImageLoader = require("resource_control.image_loader")
 		resource = ImageLoader.load(definition)
 
-	elseif definition.type == RESOURCE_TYPE_TILED_IMAGE then
+	elseif definition.type == ResourceDefinitions.Type.TiledImage then
 		resource = self:loadTiledImage(definition)
 	
 	elseif definition.type == ResourceDefinitions.Type.Font then
