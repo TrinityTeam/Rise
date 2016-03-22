@@ -5,7 +5,7 @@ local FONTS_PATH = "../data/fonts/"
 
 
 function FontLoader.load(definition)
-	print("Load "..FONTS_PATH..definition.fileName)
+	io.write("Load ", FONTS_PATH, " ", definition.fileName, "\n")
 	local font = MOAIFont.new()
 	local filePath = FONTS_PATH..definition.fileName
 	font:loadFromTTF(filePath--[[, definition.glyphs, 

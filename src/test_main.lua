@@ -38,17 +38,17 @@ function Game.init(players)
     end
 
     for id, unit in pairs(Game.units) do
-        print(id, unit:getPosition().x, unit:getPosition().y)
+        io.write(id, unit:getPosition().x, unit:getPosition().y)
     end
 end
 
 
 
-local function printRecursive(...)
+local function io.writeRecursive(...)
     for k, v in pairs(...) do
-        print(k, v)
+        io.write(k, v)
         if type(v) == "table" then
-            printRecursive(v)
+            io.writeRecursive(v)
         end
     end
 end
@@ -60,20 +60,20 @@ function parseCommand(s)
 
     for arg in string.gmatch(s, "%g+") do 
          table.insert(args, arg)
-         print (arg)
+         io.write (arg)
     end
 
     if #args == 0 then return end 
 
     if args[1] == "help" then
-        print("Do you think you're in fairy tail?")
+        io.write("Do you think you're in fairy tail?")
 
     elseif args[1] == "info" then
         if #args < 2 then 
-            print("You must specify the unit, which data interests you")
+            io.write("You must specify the unit, which data interests you")
             return
         end
-        printRecursive(Game.units[args[2]])
+        io.writeRecursive(Game.units[args[2]])
 
     elseif args[1] == "attack" then
         if #args < 2 then 
@@ -84,7 +84,7 @@ function parseCommand(s)
         os.exit()
 
     else
-        print("Invalid command "..args[1])
+        io.write("Invalid command "..args[1])
         return 
     end
 end

@@ -5,7 +5,7 @@ local defaults = nil
 
 
 local function readDefaults(filename)
-    print("READ "..filename)
+    io.write("READ ", filename, "\n")
     local fullpath = "../data/gui/defaults/"..filename
 
     local f = io.open(fullpath)

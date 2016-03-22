@@ -23,7 +23,7 @@ function ResourceManager:load(name)
 		return
 	end
 
-	print("Load "..name.." from "..definition.fileName.." resource type "..definition.type)
+	io.write("Load ", name, " from ", definition.fileName, " resource type ", definition.type, "\n")
 
 	local resource
 	if definition.type == ResourceDefinitions.Type.Image then

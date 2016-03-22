@@ -62,7 +62,7 @@ function Game.init()
             unit.id = id
             unit.pos = {x = pos % field:getSize().w + 1, 
                         y = math.ceil(pos / field:getSize().w)}
-            print(id, unit.pos.x, unit.pos.y)
+            io.write(id, " ", unit.pos.x, " ", unit.pos.y, "\n")
             units[id] = unit
         end
     end

@@ -62,7 +62,6 @@ function Button:setSize(width, height)
 	self.text:setSize(width, height)
 	local x, y = self.currentTexture:getDims()
 	self.currentTexture:setScl(width / x, height / y, 1)
-	print(self.currentTexture:getWorldBounds())
 end
 
 

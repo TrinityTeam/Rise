@@ -89,7 +89,7 @@ end
 
 
 function AssaultState:mousePressEvent(down)
-    print(MOAIInputMgr.device.pointer.x, down)
+    io.write("Mouse pressed ", MOAIInputMgr.device.pointer.x, down, "\n")
 end
 
 

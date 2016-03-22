@@ -6,7 +6,7 @@ local LabelParser = require("resource_control.data_parsers.label_parser")
 
 
 function GUI_Parser.readFrom(filename)
-    print("READ "..filename)
+    io.write("READ ", filename, "\n")
     local fullpath = "../data/gui/"..filename
 
     local f = io.open(fullpath)
