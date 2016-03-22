@@ -14,7 +14,8 @@ function Button.new(text_style)
 	self.state = Button.State.Normal
 	self.isShown = false
 
-	MOAIInputMgr.device.mouseLeft:setCallback(function(isPressed) self:mousePressEvent(isPressed) end)
+	-- Backup: MOAIInputMgr.device.mouseLeft:setCallback(function(isPressed) self:mousePressEvent(isPressed) end)
+    MOAIInputMgr.device.mouseLeft:setCallback(self:mousePressEvent)
 
 	setmetatable(self, {__index = Button})
 	return self
