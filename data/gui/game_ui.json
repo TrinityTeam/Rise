@@ -2,5 +2,8 @@
     "buttons":[
     {"id":"next_state",
      "text":"Game"}
+    ],
+    "textedits":[
+    {"id":"player_name_edit", "loc":{"x":0, "y":-200}}
     ]
 }

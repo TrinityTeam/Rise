@@ -8,7 +8,7 @@ function Label.new(style)
 	local self = {}
 
 	self.textbox = MOAITextLabel.new()
-	self.textbox:setStyle(style)
+	self.textbox:setStyle(style or error("Invalid label style"))
 	self.textbox:setLoc(0, 0)
 	self.textbox:setYFlip(true)
 	self.textbox:setAlignment(MOAITextBox.CENTER_JUSTIFY, 
@@ -54,9 +54,14 @@ end
 
 
 
-function Label:getBounds()
-	local xmin, ymin, xmax, ymax = self.textbox:getRect()
-	return {x=xmin, y=ymin, w=xmax-xmin, h=ymax-ymin}
+function Label:getText()
+	return self.textbox:getString()
+end
+
+
+
+function Label:inside(x, y)
+	return self.textbox:inside(x, y)
 end
 
 

@@ -9,7 +9,7 @@ function Unit.new(hp, speed, attack)
     self.speed = speed or error("You must specify speed")
     self.attack = attack or error("You must specify attack")
 
-    return self    
+    return self   
 end
 
 

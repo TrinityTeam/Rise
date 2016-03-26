@@ -12,7 +12,7 @@ function MenuState:init()
     end
     --self:playOrStopMusic()
 
-    self.guiRoot = GuiParser.readFrom("main_menu.json")
+    self.guiRoot = GuiParser.readFrom("main_menu_ui.json")
 
     self.guiRoot:getWidget("next_state"):setCallback(function()
                             StateManager:requestPop()

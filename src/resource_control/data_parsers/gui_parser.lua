@@ -2,6 +2,7 @@ local GUI_Parser = {}
 local GUI_Root = require("gui.gui_root")
 local ButtonParser = require("resource_control.data_parsers.button_parser")
 local LabelParser = require("resource_control.data_parsers.label_parser")
+local TextEditParser = require("resource_control.data_parsers.textedit_parser")
 
 
 
@@ -20,6 +21,10 @@ function GUI_Parser.readFrom(filename)
 
     for k, v in pairs(file.labels or {}) do
         gui_root:addWidget(LabelParser.createLabel(v))
+    end
+
+    for k, v in pairs(file.textedits or {}) do
+        gui_root:addWidget(TextEditParser.createTextEdit(v))
     end
     return gui_root
 end

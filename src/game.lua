@@ -12,6 +12,7 @@ local GUI = require("gui.gui")
 local Class = require("class")
 
 
+
 function Game.run()
 	Game.init()
 	while not Game.isOver do
@@ -29,7 +30,7 @@ function Game.init()
 	MOAIDebugLines.setStyle(MOAIDebugLines.PARTITION_PADDED_CELLS, 1, 0.5, 0.5, 0.5)
 	MOAIDebugLines.setStyle(MOAIDebugLines.PROP_WORLD_BOUNDS, 2, 0.75, 0.75, 0.75)
 	MOAIDebugLines.setStyle(MOAIDebugLines.PROP_MODEL_BOUNDS, 2, 1, 1, 1)
-	GUI.getLayer():showDebugLines(true)
+	GUI.getLayer():showDebugLines(false)
 	
 	MOAIUntzSystem.initialize()
 	

@@ -11,4 +11,3 @@ function Province:new()
         }
     end)
 end
-

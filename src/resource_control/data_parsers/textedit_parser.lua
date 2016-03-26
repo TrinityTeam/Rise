@@ -1,5 +1,5 @@
-local LabelParser = {}
-local Label = require("gui.label")
+local TextEditParser = {}
+local TextEdit = require("gui.text_edit")
 local ResourceManager = require("resource_control.resource_manager")
 
 local defaults = nil
@@ -15,7 +15,7 @@ end
 
 
 
-function LabelParser.createLabel(data)
+function TextEditParser.createTextEdit(data)
     if defaults == nil then
         readDefaults("default_label.json")
     end
@@ -26,14 +26,14 @@ function LabelParser.createLabel(data)
     style:setFont(ResourceManager:get(data.font or defaults.font))
     style:setSize(data.text_size or defaults.text_size)
 
-    local label = Label(style)
-    label:setText(data.text or defaults.text)
+    local textEdit = TextEdit(style)
     local loc = data.loc or defaults.loc
-    label:setLoc(loc.x, loc.y)
+    textEdit:setLoc(loc.x, loc.y)
+    textEdit:setText(data.text or defaults.text)
 
-    return data.id, label
+    return data.id, textEdit
 end
 
 
 
-return LabelParser
+return TextEditParser
