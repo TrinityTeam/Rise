@@ -71,7 +71,6 @@ function TextEdit:hideCursor()
         self.isCursorShowed = false
         local text = self.label:getText()
         self.label:setText(text:sub(0, self.cursorPos)..text:sub(self.cursorPos+2))
-        print("Hidden", self.label:getText())
     end
 end
 
@@ -83,7 +82,6 @@ function TextEdit:showCursor()
         local text = self.label:getText()
         self.label:setText(text:sub(1, self.cursorPos).."|"..
                            text:sub(self.cursorPos+1))
-        print("Shown", self.label:getText())
     end
 end
 
@@ -92,7 +90,6 @@ end
 function TextEdit:update()
     if self.isActive and os.time() - self.lastBlinkTime > 0.9 then
         self:blinkCursor()
-        print(self.cursorPos)
         self.lastBlinkTime = os.time()
     end
 end
@@ -103,7 +100,6 @@ function TextEdit:mousePressEvent(isPressed)
     if isPressed then
         local x, y = GUI:getLayer():wndToWorld(MOAIInputMgr.device.pointer:getLoc())
         if self.label:inside(x, y) then
-            print 'Hit'
             self.isActive = true
         else
             self.isActive = false
@@ -148,6 +144,7 @@ function TextEdit:keyPressEvent(key, isPressed)
                                    string.char(key)..text:sub(self.cursorPos+1))
                 self:moveCursor(1)
             end
+            self:showCursor()
         end
     end
 end
