@@ -36,48 +36,14 @@ function Game.init()
 	
 	DefinitionsList.init()
 
-    local field = Battlefield({w = 10, h = 10})
-
-    local players = {
-    	["Kurono Kishidan"] = {
-    	    units = {
-    	        u1 = Unit(13, 3, 7),
-    	        u2 = Unit(7, 3, 3)
-    	    }
-    	},
-    	["Britannia Empire"] = {
-    	    units = {
-    	        wk = Unit(33, 3, 12),
-    	        u3 = Unit(7, 3, 3)
-    	    }
-    	}
-	}
-
-    local units = {}
-
-    local pos = 0 --! @todo: units arrangement
-    for name, data in pairs(players) do
-        for id, unit in pairs(players[name].units) do
-            pos = pos + 1
-            unit.owner = name
-            unit.id = id
-            unit.pos = {x = pos % field:getSize().w + 1, 
-                        y = math.ceil(pos / field:getSize().w)}
-            io.write(id, " ", unit.pos.x, " ", unit.pos.y, "\n")
-            units[id] = unit
-        end
-    end
-    local data = BattleData.new(field, units)
-
 	StateManager:registerState("Game", GameState)
 	StateManager:registerState("Menu", MenuState)
 	StateManager:registerState("Assault", AssaultState)
-	StateManager:requestPush("Game", data)
+	StateManager:requestPush("Game")
 
 	Game.isOver = false
 
-	MOAIInputMgr.device.keyboard:setCallback(Game.processKeyboard)
-	MOAIInputMgr.device.pointer:setCallback(StateManager.mousePressEvent)
+	GUI.addKeyboardCallback(Game.processKeyboard)
 end
 
 

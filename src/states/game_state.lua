@@ -33,8 +33,6 @@ end
 
 
 
-function GameState:mousePressEvent() end
-
 Class.registerSingleton(GameState)
 
 return GameState

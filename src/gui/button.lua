@@ -15,9 +15,8 @@ function Button.new(text_style)
 	self.state = Button.State.Normal
 	self.isShown = false
 
-	MOAIInputMgr.device.mouseLeft:setCallback(function(isPressed) 
-											  	  self:mousePressEvent(isPressed) 
-											  end)
+    GUI.addMouseClickCallback(function(isPressed) self:mouseClickEvent(isPressed) end)
+
 	return self
 end
 
@@ -42,8 +41,9 @@ end
 
 
 
-function Button:mousePressEvent(isPressed) 
+function Button:mouseClickEvent(isPressed) 
 	assert(self.currentTexture, "You must specify button textures")
+	if not self.isShown then return end
 	if isPressed then
 		if self.state == Button.State.Hovered then
 			self:_setState(Button.State.Pressed)
@@ -84,7 +84,7 @@ end
 
 
 function Button:hide()
-	self.isShown = true
+	self.isShown = false
 	GUI.getLayer():removeProp(self.currentTexture)
 	self.text:hide()
 end

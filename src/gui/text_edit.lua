@@ -15,12 +15,9 @@ function TextEdit.new(style)
     self.isActive = false
     self.cursorPos = 1
 
-    MOAIInputMgr.device.mouseLeft:setCallback(function(isPressed) 
-                                                  self:mousePressEvent(isPressed) 
-                                              end)
-    MOAIInputMgr.device.keyboard:setCallback(function(key, isPressed) 
-                                                  self:keyPressEvent(key, isPressed) 
-                                              end)
+    GUI.addMouseClickCallback(function(isPressed) self:mouseClickEvent(isPressed) end)
+    GUI.addKeyboardCallback(function(key, isPressed) self:keyboardEvent(key, isPressed) end)
+
     return self
 end
 
@@ -96,7 +93,7 @@ end
 
 
 
-function TextEdit:mousePressEvent(isPressed) 
+function TextEdit:mouseClickEvent(isPressed) 
     if isPressed then
         local x, y = GUI:getLayer():wndToWorld(MOAIInputMgr.device.pointer:getLoc())
         if self.label:inside(x, y) then
@@ -122,7 +119,7 @@ end
 
 
 
-function TextEdit:keyPressEvent(key, isPressed) 
+function TextEdit:keyboardEvent(key, isPressed) 
     if isPressed then
         if self.isActive then
             self:hideCursor()
@@ -133,11 +130,18 @@ function TextEdit:keyPressEvent(key, isPressed)
             elseif key == MOAIKeyCode.LEFT then
                 self:moveCursor(-1)
 
-            elseif key == MOAIKeyCode.BACKSPACE and self.cursorPos ~= 0 then
-                local text = self.label:getText()
-                self.label:setText(text:sub(0, self.cursorPos-1)..text:sub(self.cursorPos+1))
-                self:moveCursor(-1)
+            elseif key == MOAIKeyCode.HOME then
+                self.cursorPos = 0
 
+            elseif key == MOAIKeyCode.END then
+                self.cursorPos = self.label:getText():len()
+
+            elseif key == MOAIKeyCode.BACKSPACE then
+                if self.cursorPos ~= 0 then
+                    local text = self.label:getText()
+                    self.label:setText(text:sub(0, self.cursorPos-1)..text:sub(self.cursorPos+1))
+                    self:moveCursor(-1)
+                end
             else
                 local text = self.label:getText()
                 self.label:setText(text:sub(0, self.cursorPos)..
