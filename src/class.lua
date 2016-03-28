@@ -18,8 +18,8 @@ function Class.register(prototype)
                                                     __metatable = "Private metatable"})
                             return instance
                         end
-    metatable.__index = function(t, k) error("Nil field "..k.." requested") end
-    metatable.__newindex = function() error("Nil field requested") end
+    metatable.__index = function(t, k) error("Nil field "..k.." in table requested") end
+    metatable.__newindex = function(t, k) error("Nil field "..k.." in table requested") end
     setmetatable(prototype, metatable)
 
     return prototype
@@ -33,7 +33,7 @@ function Class.registerSingleton(class)
 
     local metatable = {}
     metatable.__metatable = "Private metatable"
-    metatable.__index = function(t, k) error("Nil field "..k.." requested") end
+    metatable.__index = function(t, k) error("Nil field "..k.." in singletone requested") end
     setmetatable(class, metatable)
 
     return class

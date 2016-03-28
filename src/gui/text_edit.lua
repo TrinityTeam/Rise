@@ -94,6 +94,7 @@ end
 
 
 function TextEdit:mouseClickEvent(isPressed) 
+    if not self.label:isShown() then return end
     if isPressed then
         local x, y = GUI:getLayer():wndToWorld(MOAIInputMgr.device.pointer:getLoc())
         if self.label:inside(x, y) then
@@ -120,6 +121,7 @@ end
 
 
 function TextEdit:keyboardEvent(key, isPressed) 
+    if not self.label:isShown() then return end
     if isPressed then
         if self.isActive then
             self:hideCursor()

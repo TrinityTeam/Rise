@@ -66,9 +66,13 @@ end
 
 
 
-function Label:update()
-
+function Label:isShown()
+	return self.isShown
 end
+
+
+
+function Label:update() end
 
 
 Class.register(Label)
